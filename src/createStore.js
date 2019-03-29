@@ -1,21 +1,23 @@
 export default function createStore(reducer) {
   let state;
 
-  dispatch = (action) => {
+  function dispatch(action) {
     state = reducer(state, action)
     render()
   }
 
-  getState = () => {
-    return state
+  function getState() {
+    return state;
   }
 
-  return (dispatch, getState)
+  dispatch({ type: '@@INIT' })
+
+  return {
+    dispatch,
+    getState
+  }
 }
 
 function render() {
   const container = document.getElementById('container');
 }
-
-let store = createStore()
-store.dispatch({type: '@@INIT'})
