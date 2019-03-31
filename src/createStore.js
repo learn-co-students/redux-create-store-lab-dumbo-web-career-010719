@@ -1,5 +1,5 @@
 export default function createStore(reducer) {
-  let state=0;
+  let state;
 
   const dispatch =(action)=>{
     state=reducer(state, action)
@@ -9,6 +9,7 @@ export default function createStore(reducer) {
   const getState = () =>{
       return state;
   }
+  dispatch({ type: '@@INIT' })
 
   return{
     getState,
